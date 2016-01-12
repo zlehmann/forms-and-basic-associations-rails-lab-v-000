@@ -14,4 +14,15 @@ class SongsController < ApplicationController
   def edit
     @song = Song.find(params[:id])
   end
+
+  def create
+    song = Song.create(song_params)
+    redirect_to controller: 'songs', action: 'index'
+  end
+
+  private
+
+  def song_params
+    params.require(:song).permit(:title)
+  end
 end
